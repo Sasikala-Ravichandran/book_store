@@ -12,13 +12,22 @@ source 'https://rubygems.org'
 group :development, :test do
    
   gem 'byebug'
-  gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'rspec-rails', '3.2.3'
   gem 'spring-commands-rspec'
   gem 'guard-rspec', require: false
+  gem 'fabrication'
+end
+
+group :development do
+  
+  gem 'pry'
+  gem 'pry-nav'
+  gem 'web-console', '~> 2.0'
 end
 
 group :test do
+  
   gem 'capybara', '2.4.4'
+  gem 'faker'
 end
