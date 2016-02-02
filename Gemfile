@@ -8,7 +8,7 @@ source 'https://rubygems.org'
   gem 'jquery-rails'
   gem 'jbuilder', '~> 2.0'
   gem 'sdoc', '~> 0.4.0', group: :doc
-  gem 'bootstrap-sass', '~>3.3.4.1'
+  gem 'bootstrap-sass'
   gem 'bootstrap_form'
 group :development, :test do
    
