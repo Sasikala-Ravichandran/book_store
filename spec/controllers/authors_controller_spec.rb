@@ -21,7 +21,8 @@ RSpec.describe AuthorsController, :type => :controller do
   
   describe "GET #new" do
     it "returns a new" do
-
+      get :new
+      expect(response).to have_http_status(:success)
     end
   end
 
