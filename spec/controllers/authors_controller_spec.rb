@@ -45,11 +45,25 @@ RSpec.describe AuthorsController, :type => :controller do
         expect(response).to redirect_to author_path(Author.last)
       end
 
-      it "displays flash message" do
+      it "displays success flash message" do
         post :create, author: Fabricate.attributes_for(:author)
         expect(flash[:success]).to eq("Author has been created")
       end
 
     end
+  end
+
+  context "an unsuccessful path" do
+   
+    it "does not save author object with invalid input" do
+      post :create, author: Fabricate.attributes_for(:author, first_name: " ")
+      expect(Author.count).to eq(0)
+    end
+
+    it "displays danger flash message" do
+      post :create, author: Fabricate.attributes_for(:author, first_name: " ")
+      expect(flash[:danger]).to eq("Author has not been created")
+    end
+
   end
 end
