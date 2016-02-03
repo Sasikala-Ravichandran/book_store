@@ -51,7 +51,7 @@ RSpec.describe AuthorsController, :type => :controller do
       end
     end
   
-    context "an unsuccessful path" do
+    context "an unsuccessful create" do
    
       it "does not save author object with invalid input" do
         post :create, author: Fabricate.attributes_for(:author, first_name: " ")
@@ -83,11 +83,9 @@ RSpec.describe AuthorsController, :type => :controller do
 
       let(:john) { Fabricate(:author, first_name: "John", last_name: "Walcher") }
       it "updates the existing author object" do
-
         put :update, author: Fabricate.attributes_for(:author, first_name: "Mike"), id: john.id
         expect(Author.last.first_name).to eq("Mike") 
         expect(Author.last.first_name).not_to eq("John")
-        expect(Author.last.last_name).not_to eq("Walcher")
       end
 
       it "displays success flash message" do
