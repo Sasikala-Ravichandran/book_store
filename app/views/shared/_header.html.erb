@@ -8,14 +8,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a href="#" class="navbar-brand">Brand</a>
+        <%= link_to "BOOKSTORE", root_path, class: "navbar-brand" %>
       </div>
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="navbar navbar-nav">
-        <li class="active"><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
+        <li class="active"><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Authors", authors_path %></li>
       </ul>
       </div>
     </div>
