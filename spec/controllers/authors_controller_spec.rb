@@ -13,7 +13,6 @@ RSpec.describe AuthorsController, :type => :controller do
 
   describe "Get #show" do
 
-    
     it "returns a successful show template" do
       author =  Fabricate(:author)
       get :show, id: author.id
