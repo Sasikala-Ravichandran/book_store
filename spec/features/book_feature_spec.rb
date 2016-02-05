@@ -17,6 +17,7 @@ RSpec.feature "Creating Books" do
     fill_in "Published at", with: "2012-1-2"
     fill_in "Page count", with: 345
     fill_in "Price", with: 34.99
+    attach_file "Book cover","app/assets/images/cover1.jpg"
     select "Peachpit Press", from: "Publisher"
     check author1.full_name
     check author2.full_name
