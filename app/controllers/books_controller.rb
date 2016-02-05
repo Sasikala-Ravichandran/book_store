@@ -21,7 +21,7 @@ class BooksController < ApplicationController
     else
       flash[:danger] = "Book has not been created"
       @publishers = Publisher.all
-      @authors = @Author.all
+      @authors = Author.all
       render :new
     end
   end
@@ -51,8 +51,8 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :isbn, :description, 
-                                 :published_at, :publisher_id, :author_ids, :page_count, :price)
+    params.require(:book).permit(:title, :isbn, :description, :page_count, :price, :published_at, :book_cover,
+                                  :publisher_id, author_ids: [])
   end
 
 end 
