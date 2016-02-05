@@ -9,6 +9,8 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+    @publishers = Publisher.all
+    @authors = Author.all
   end
 
   def create
@@ -18,6 +20,8 @@ class BooksController < ApplicationController
       redirect_to @book
     else
       flash[:danger] = "Book has not been created"
+      @publishers = Publisher.all
+      @authors = @Author.all
       render :new
     end
   end
@@ -48,7 +52,7 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :isbn, :description, 
-                                 :published_at, :publisher_id, :page_count, :price)
+                                 :published_at, :publisher_id, :author_ids, :page_count, :price)
   end
 
 end 
