@@ -14,7 +14,8 @@ source 'https://rubygems.org'
   gem 'carrierwave-dropbox'
   gem 'mini_magick'
   gem 'figaro'
-  
+  gem 'bcrypt'
+
 group :development, :test do
    
   gem 'byebug'

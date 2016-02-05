@@ -28,3 +28,18 @@ Book.create!(title: "Book1", isbn: "983-12-098-345-123566", page_count: 345,
               price: 34.99, description: "A book on books", published_at: "2013-3-23",
               publisher_id: 2, 
               book_cover: File.open(File.join(Rails.root, 'app/assets/images/cover1.jpg')))
+
+Book.create!(title: "Book2", isbn: "983-12-098-345-123566", page_count: 700,
+              price: 43.99, description: "A book on books", published_at: "2013-3-23",
+              publisher_id: 4, 
+              book_cover: File.open(File.join(Rails.root, 'app/assets/images/cover1.jpg')))
+
+Book.create!(title: "Book3", isbn: "983-12-098-345-123566", page_count: 1345,
+              price: 134.99, description: "A book on books", published_at: "2013-3-23",
+              publisher_id: 3, 
+              book_cover: File.open(File.join(Rails.root, 'app/assets/images/cover1.jpg')))
+
+Book.create!(title: "Book4", isbn: "983-12-098-345-123566", page_count: 745,
+              price: 334.99, description: "A book on books", published_at: "2013-3-23",
+              publisher_id: 1, 
+              book_cover: File.open(File.join(Rails.root, 'app/assets/images/cover1.jpg')))
