@@ -4,21 +4,21 @@ RSpec.describe User, :type => :model do
   
   it "requires first name" do
     user = User.new(first_name: " ", last_name: "Doe", 
-                    email: "john@example.com", password: "password")
+                    email: "john@example.com", password: "password", password_confirmation: "password")
     expect(user).not_to be_valid
     expect(user.errors[:first_name].any?).to be_truthy
   end
 
   it "requires last name" do
     user = User.new(first_name: "John", last_name: nil, 
-                    email: "john@example.com", password: "password")
+                    email: "john@example.com", password: "password", password_confirmation: "password")
     expect(user).not_to be_valid
     expect(user.errors[:last_name].any?).to be_truthy
   end
 
   it "requires email" do
     user = User.new(first_name: "John", last_name: "Doe", 
-                    email: " ", password: "password")
+                    email: " ", password: "password", password_confirmation: "password")
     expect(user).not_to be_valid
     expect(user.errors[:email].any?).to be_truthy
   end
