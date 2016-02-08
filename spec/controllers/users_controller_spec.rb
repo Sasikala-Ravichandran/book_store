@@ -20,10 +20,11 @@ RSpec.describe UsersController, :type => :controller do
 
   describe "POST #create" do
     context "a successful create" do
-      it "saves new user object" do
-        #require 'pry';binding.pry
+      it "saves new user object and stores user id in session cookie" do
         post :create, user: Fabricate.attributes_for(:user)
+        require 'pry';binding.pry
         expect(User.count).to eq(1)
+        expect(session[:user_id]).to eq(User.last.id)
       end
 
       it "displays success flash message" do

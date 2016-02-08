@@ -19,7 +19,7 @@ class AuthorsController < ApplicationController
       flash[:success] = "Author has been created"
       redirect_to @author
     else
-      flash[:danger] = "Author has not been created"
+      flash.now[:danger] = "Author has not been created"
       render :new
     end
   end
@@ -32,7 +32,7 @@ class AuthorsController < ApplicationController
       flash[:success] = "Author has been updated"
       redirect_to @author
     else
-      flash[:danger] = "Author has not been updated"
+      flash.now[:danger] = "Author has not been updated"
       render :edit
     end
   end

@@ -16,9 +16,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "User has been created"
+      log_in @user
       redirect_to @user
     else
-      flash[:danger] = "User has not been created"
+      flash.now[:danger] = "User has not been created"
       render :new
     end
   end
