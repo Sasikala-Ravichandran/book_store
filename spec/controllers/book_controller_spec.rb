@@ -1,25 +1,58 @@
 require 'rails_helper'
+require 'support/macro'
+require 'support/shared_examples'
 
 RSpec.describe BooksController, :type => :controller do
 
+  let(:admin) { Fabricate(:admin) }
+  let(:user) { Fabricate(:user) }
+
+  before{ set_admin_user admin }
   describe "GET #index" do
 
-    it "responses with index template" do
-      get :index
-      expect(response).to have_http_status(:success)
+    context "access as a guest" do
+      it_behaves_like "requires log-in" do
+        let(:action) { get :index }
+      end
     end
 
+    context "access as a non-admin user" do
+      it_behaves_like "requires admin" do
+        let(:action) { get :index }
+      end
+    end
+
+    context "access as admin user" do
+      it "responses with index template" do
+        get :index
+        expect(response).to have_http_status(:success)
+      end
+    end
   end
 
   describe "GET #show" do
-
-    it "responses with show template" do
-      book = Fabricate(:book)
-      #require 'pry';binding.pry
-      get :show, id: book.id
-      expect(response).to have_http_status(:success)
+    
+    let(:book) { Fabricate(:book) }
+    
+    context "access as a guest" do
+      it_behaves_like "requires log-in" do
+        let(:action) { get :show, id: book.id }
+      end
     end
 
+    context "access as a non-admin user" do
+      it_behaves_like "requires admin" do
+        let(:action) { get :show, id: book.id }
+      end
+    end
+
+    context "access as admin user" do
+      it "responses with show template" do
+        book = Fabricate(:book)
+        get :show, id: book.id
+        expect(response).to have_http_status(:success)
+      end
+    end
   end
 
   describe "GET #new" do
@@ -88,7 +121,7 @@ RSpec.describe BooksController, :type => :controller do
     end
 
     it "updates book object" do
-      require 'pry'; binding.pry
+      #require 'pry'; binding.pry
       expect(Book.last.title).to eq("A Frog")
     end
 
@@ -108,7 +141,7 @@ RSpec.describe BooksController, :type => :controller do
       put :update, book: Fabricate.attributes_for(:book, title: " "), id: book
     end
     it "does not update" do
-      require 'pry';binding.pry
+      #require 'pry';binding.pry
       expect(Book.last.title).to eq("Awesome Book")
     end
 

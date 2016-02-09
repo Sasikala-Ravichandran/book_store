@@ -1,13 +1,17 @@
 require 'rails_helper'
+require 'support/macro'
 
 RSpec.feature "Creating Books" do
   
   let!(:peachpit) { Fabricate(:publisher, name: 'Peachpit Press')}
   let!(:author1) { Fabricate(:author) }
   let!(:author2) { Fabricate(:author) }
-  scenario "with valid input succeeds" do
-    visit root_path
+  let(:admin) { Fabricate(:admin) }
 
+  scenario "with valid input succeeds" do
+ 
+    sign_in_as(admin)
+  
     click_link "Books", exact: true
     click_link "Add new book"
 
@@ -28,6 +32,15 @@ RSpec.feature "Creating Books" do
   end
 
   scenario "with invalid input failures" do
+
+    sign_in_as(admin)
+    click_link "Books", exact: true
+    click_link "Add new book"
+
+    fill_in "Title", with: " "
+    fill_in "Isbn", with: " "  
+    click_button "Create Book"
+    expect(page).to have_content("Book has not been created")
   end
 
 end
