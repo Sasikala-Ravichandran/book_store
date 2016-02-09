@@ -1,25 +1,64 @@
 require 'rails_helper.rb'
+require 'support/macro.rb'
 
 RSpec.describe AuthorsController, :type => :controller do
 
+  let(:admin) { Fabricate(:admin) }
+  let(:user) { Fabricate(:user) }
+
+  before { set_admin_user admin }
+   
   describe "GET #index" do
 
-    it "returns a successful http request status code" do
-      get :index
-      expect(response).to have_http_status(:success)
+    context "access as a guest" do
+      it "returns sign path" do 
+        clear_current_user
+        get :index
+        expect(response).to redirect_to login_path 
+      end
     end
 
+    context "access as a non-admin user" do
+      it "returns root path" do
+        set_current_user user
+        get :index
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context "access as admin user" do
+      it "returns a successful index template" do
+       get :index
+       expect(response).to have_http_status(:success)
+      end
+    end
   end
 
   describe "Get #show" do
-
-    it "returns a successful show template" do
-      author =  Fabricate(:author)
-      get :show, id: author.id
-      #require 'pry';binding.pry
-      expect(response).to have_http_status(:success)
+    let(:author) { Fabricate(:author) }
+    
+    context "access as a guest" do
+      it "returns sign path" do
+        clear_current_user
+        get :show, id: author.id
+        expect(response).to redirect_to login_path 
+      end
     end
 
+    context "access as a non-admin user" do
+      it "returns root path" do
+        set_current_user user
+        get :show, id: author.id
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context "access as admin user" do
+      it "returns a successful show template" do
+        get :show, id: author.id
+        expect(response).to have_http_status(:success)
+      end
+    end
   end
   
   describe "GET #new" do
