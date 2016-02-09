@@ -30,6 +30,16 @@ RSpec.describe User, :type => :model do
     expect(user.errors[:password].any?).to be_truthy
   end 
 
+  it "requires admin false" do
+    user = Fabricate(:user)
+    expect(user.admin).to eq(false)
+  end
+
+  it "requires admin true" do
+    admin = Fabricate(:admin)
+    expect(admin.admin).to eq(true)
+  end
+
   describe "#full_name" do
     it "requires a #full_name" do
       user = User.new(first_name: "John", last_name: "Doe", 
