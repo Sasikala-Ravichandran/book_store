@@ -23,4 +23,3 @@ def sign_in_as(user)
   expect(page).to have_content("Successfully logged in")
   expect(current_path).to eq(user_path(user))
 end
-
