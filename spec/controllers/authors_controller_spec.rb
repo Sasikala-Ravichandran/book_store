@@ -1,5 +1,6 @@
 require 'rails_helper.rb'
 require 'support/macro.rb'
+require 'support/shared_examples.rb'
 
 RSpec.describe AuthorsController, :type => :controller do
 
@@ -11,18 +12,14 @@ RSpec.describe AuthorsController, :type => :controller do
   describe "GET #index" do
 
     context "access as a guest" do
-      it "returns sign path" do 
-        clear_current_user
-        get :index
-        expect(response).to redirect_to login_path 
+      it_behaves_like "requires log-in" do
+        let(:action) { get :index}
       end
     end
 
     context "access as a non-admin user" do
-      it "returns root path" do
-        set_current_user user
-        get :index
-        expect(response).to redirect_to root_path
+      it_behaves_like "requires admin" do
+        let(:action) { get :index}
       end
     end
 
@@ -38,18 +35,14 @@ RSpec.describe AuthorsController, :type => :controller do
     let(:author) { Fabricate(:author) }
     
     context "access as a guest" do
-      it "returns sign path" do
-        clear_current_user
-        get :show, id: author.id
-        expect(response).to redirect_to login_path 
+      it_behaves_like "requires log-in" do
+        let(:action) { get :show, id: author.id }
       end
     end
 
     context "access as a non-admin user" do
-      it "returns root path" do
-        set_current_user user
-        get :show, id: author.id
-        expect(response).to redirect_to root_path
+      it_behaves_like "requires admin" do
+        let(:action) { get :show, id: author.id }
       end
     end
 

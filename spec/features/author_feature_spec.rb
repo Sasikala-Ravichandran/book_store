@@ -1,10 +1,10 @@
 require 'rails_helper'
-
+require 'support/macro'
 RSpec.feature "Creating Authors" do
   
   scenario "with valid inputs succeeds" do
     visit root_path
-
+    set_current_user
     click_link "Authors"
     click_link "Add new author"
     
