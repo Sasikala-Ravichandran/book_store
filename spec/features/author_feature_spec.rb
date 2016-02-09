@@ -2,9 +2,11 @@ require 'rails_helper'
 require 'support/macro'
 RSpec.feature "Creating Authors" do
   
+  let(:admin) { Fabricate(:admin) }
   scenario "with valid inputs succeeds" do
-    visit root_path
-    set_current_user
+    
+    sign_in_as(admin)
+
     click_link "Authors"
     click_link "Add new author"
     
@@ -17,8 +19,9 @@ RSpec.feature "Creating Authors" do
   end
 
   scenario "with invalid inputs fails" do
-    visit root_path
-
+    
+    sign_in_as (admin)
+    
     click_link "Authors"
     click_link "Add new author"
     
