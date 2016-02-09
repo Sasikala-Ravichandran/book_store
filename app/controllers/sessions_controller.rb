@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
+    #require 'pry'; binding.pry
   end
 
   def create
@@ -8,7 +9,11 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       flash[:success] = "Successfully logged in"
       log_in user
-      redirect_to user
+      if session[:destination]
+        redirect_to session[:destination] 
+      else
+        redirect_to user
+      end
     else
       flash.now[:danger] = "Invalid login information"
       render :new
