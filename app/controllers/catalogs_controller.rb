@@ -8,4 +8,8 @@ class CatalogsController < ApplicationController
     @book = Book.find(params[:id])
   end
 
+  def search
+    @books = Book.search_by_title(params[:search_name])
+  end
+
 end
