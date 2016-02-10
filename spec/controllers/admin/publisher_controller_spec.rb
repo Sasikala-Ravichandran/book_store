@@ -1,14 +1,57 @@
 require 'rails_helper'
+require 'support/macro'
 
-RSpec.describe PublishersController, :type => :controller do
+RSpec.describe Admin::PublishersController, :type => :controller do
   
+  let(:admin) { Fabricate(:admin) }
+  let(:user) { Fabricate(:user) }
+
+  before{ set_admin_user admin }
+
   describe "GET #index" do
-    
-    it "requests to index action" do
-      get :index
-      expect(response).to have_http_status(:success)
+    context "access as a guest" do
+      it_behaves_like "requires log-in" do
+        let(:action) { get :index }
+      end
     end
 
+    context "access as a non-admin user" do
+      it_behaves_like "requires admin" do
+        let(:action) { get :index }
+      end
+    end
+
+    context "access as admin user" do
+      it "responses with index template" do
+        get :index
+        expect(response).to have_http_status(:success)
+      end
+    end
+  end
+
+  describe "GET #show" do
+    
+    let(:publisher) { Fabricate(:publisher) }
+    
+    context "access as a guest" do
+      it_behaves_like "requires log-in" do
+        let(:action) { get :show, id: publisher.id }
+      end
+    end
+
+    context "access as a non-admin user" do
+      it_behaves_like "requires admin" do
+        let(:action) { get :show, id: publisher.id }
+      end
+    end
+
+    context "access as admin user" do
+      it "responses with show template" do
+        publisher = Fabricate(:publisher)
+        get :show, id: publisher.id
+        expect(response).to have_http_status(:success)
+      end
+    end
   end
 
   describe "GET #show" do
@@ -46,7 +89,7 @@ RSpec.describe PublishersController, :type => :controller do
       
       it "redirects to show template" do
         post :create, publisher: Fabricate.attributes_for(:publisher)
-        expect(response).to redirect_to Publisher.last
+        expect(response).to redirect_to admin_publisher_path(Publisher.last)
       end
 
     end
@@ -92,7 +135,7 @@ RSpec.describe PublishersController, :type => :controller do
 
       it "redirects to show page" do
         put :update, publisher: Fabricate.attributes_for(:publisher, name: "John Wiley"), id: wiley.id
-        expect(response).to redirect_to Author.last
+        expect(response).to redirect_to admin_publisher_path(Publisher.last)
       end
 
     end
@@ -127,7 +170,7 @@ RSpec.describe PublishersController, :type => :controller do
 
     it "redirects to index page" do
       delete :destroy, id: publisher.id
-      expect(response).to redirect_to publishers_path
+      expect(response).to redirect_to admin_publishers_path
     end
 
   end

@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'support/macro'
 require 'support/shared_examples'
 
-RSpec.describe BooksController, :type => :controller do
+RSpec.describe Admin::BooksController, :type => :controller do
 
   let(:admin) { Fabricate(:admin) }
   let(:user) { Fabricate(:user) }
@@ -81,7 +81,7 @@ RSpec.describe BooksController, :type => :controller do
       end
 
       it "redirects to show template" do
-        expect(response).to redirect_to Book.last
+        expect(response).to redirect_to admin_book_path(Book.last)
       end
 
     end
@@ -130,7 +130,7 @@ RSpec.describe BooksController, :type => :controller do
     end
 
     it "redirects to show template" do
-      expect(response).to redirect_to Book.last
+      expect(response).to redirect_to admin_book_path(Book.last)
     end
 
    end
@@ -168,7 +168,7 @@ RSpec.describe BooksController, :type => :controller do
     end
 
     it "redirects to index page of books" do
-      expect(response).to redirect_to books_path
+      expect(response).to redirect_to admin_books_path
     end
   end
 
