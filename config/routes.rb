@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       post :search, to: 'catalogs#search'
     end
   end
+  resources :carts, only: [:show, :destroy]
+  
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
