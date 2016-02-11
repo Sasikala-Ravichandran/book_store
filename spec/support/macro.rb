@@ -14,6 +14,10 @@ def current_user
   User.find(session[:user_id])
 end
 
+def set_current_cart(cart=nil)
+  session[:cart_id] = (cart || Fabricate(:cart)).id
+end
+
 def sign_in_as(user)
   visit root_path
   click_link "Login"
