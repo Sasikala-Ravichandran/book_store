@@ -15,6 +15,7 @@ source 'https://rubygems.org'
   gem 'mini_magick'
   gem 'figaro'
   gem 'bcrypt'
+  gem 'will_paginate-bootstrap', '1.0.1'
 
 group :development, :test do
    
