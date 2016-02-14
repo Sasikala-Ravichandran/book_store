@@ -12,7 +12,7 @@ RSpec.describe OrdersController, :type => :controller do
       expect(response).to have_http_status(:success)
     end
     
-    it "redirects unquthorized user" do
+    it "redirects unauthorized user" do
       clear_current_user 
       get :new
       expect(response).to redirect_to(login_path)
