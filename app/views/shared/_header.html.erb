@@ -20,7 +20,9 @@
           </div>
           <%= submit_tag "Search", class: "btn btn-default"%>
         <% end %>
+        
         <li><%= link_to "Catalogs", catalogs_path %></li>
+        
         <% if current_user && current_user.admin? %>
           <li><%= link_to "Authors", admin_authors_path %></li>
           <li><%= link_to "Books", admin_books_path %></li>
