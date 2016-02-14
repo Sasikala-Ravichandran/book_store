@@ -18,4 +18,8 @@ class Cart < ActiveRecord::Base
 
   end
 
+  def total_sale
+    cart_items.map(&:line_total).reduce(:+)
+  end
+
 end
