@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: { case_sensitive: false },
                     format: { with: VALID_FORMAT}
 
+  has_many :addresses
+  accepts_nested_attributes_for :addresses
+
   def full_name
     "#{first_name} #{last_name}"
   end
