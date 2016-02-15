@@ -3,8 +3,7 @@ Dear <%= @customer.full_name %>
 Thank you for ordering. Please find the details below. 
 
 <% @order.order_items.each do |item| %>
-  <%= item.quantity %>&nbsp;&times;&nbsp;<%= item.book.title%>&nbsp;
-  <%= number_to_currency(item.line_total) %> 
+  <%= item.quantity %> x <%= item.book.title%> <%= number_to_currency(item.line_total) %> 
 <% end %>
 
 Total order:<%= number_to_currency(@order.order_total) %> 
