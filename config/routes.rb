@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
   resources :carts, only: [:show, :destroy]
   resources :cart_items, only: [:create]
-  resources :orders, only: [:new]
+  resources :orders, only: [:new, :create]
   
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'

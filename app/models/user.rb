@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
                     format: { with: VALID_FORMAT}
 
   has_many :addresses
+  has_many :orders
   accepts_nested_attributes_for :addresses
 
   def full_name
