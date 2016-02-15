@@ -17,4 +17,10 @@ class OrderMailerPreview < ActionMailer::Preview
 
     OrderMailer.notify_on_successful_order(customer, order)
   end
+
+  def send_password_reset_link
+    user = User.create(first_name: "Johnny", last_name: "Britto", 
+                       token: '1234', password: 'password')
+    OrderMailer.send_password_reset_link(user)
+  end
 end

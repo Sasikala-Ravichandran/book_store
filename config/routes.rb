@@ -17,10 +17,12 @@ Rails.application.routes.draw do
   resources :carts, only: [:show, :destroy]
   resources :cart_items, only: [:create]
   resources :orders, only: [:new, :create]
+  resources :password_resets, only: [:new, :create, :edit, :update]
   
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+  get 'expired_token' => 'password_resets#expired_token'
   root 'catalogs#index'
 
 end
