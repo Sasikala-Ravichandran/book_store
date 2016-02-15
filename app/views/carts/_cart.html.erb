@@ -12,14 +12,14 @@
       <div class="cart-total">
         <strong> Total: </strong><%= number_to_currency(@cart.total_sale) %>
       </div>
-      <div class="row">
-        <div class="col-md-4" id="clear-cart-btn">
+      <div class="row buttons_to_hide">
+        <div class="col-md-6" id="clear-cart-btn">
           <%= button_to "Clear Cart", cart_path(@cart), method: :delete, 
                                   data: { confirm: "Are you sure" }, 
-                                  class: "btn btn-danger" %>
+                                  class: "btn btn-primary" %>
         </div>
 
-        <div class="col-md-4" id="checkout-btn">
+        <div class="col-md-6" id="checkout-btn">
           <%= button_to "Checkout", new_order_path, method: :get,
                                   class: "btn btn-default", id: "checkout" %>
         </div>
