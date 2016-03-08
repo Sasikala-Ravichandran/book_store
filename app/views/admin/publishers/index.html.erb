@@ -1,1 +1,14 @@
-Index publisher
+<section>
+  <header>
+    <% if @publishers.empty? %>
+      <h3>No Publishers Defined</h3>
+    <% else %>
+      <h3>All Publishers</h3>
+    <% end %>
+  </header>
+  <% @publishers.each do |publisher| %>
+    <%= link_to publisher.name, [:admin, publisher] %><br>
+  <% end %>
+  <br>
+  <p><%= link_to 'Add New publisher', admin_add_publisher_path, class: 'btn btn-primary' %></p>
+</section>

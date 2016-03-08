@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
   has_many :addresses
   has_many :orders
+
   accepts_nested_attributes_for :addresses
 
   def full_name
@@ -22,6 +23,7 @@ class User < ActiveRecord::Base
   end
 
   protected
+
   def generate_token
     self.token = SecureRandom.urlsafe_base64
   end

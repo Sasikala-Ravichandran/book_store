@@ -10,7 +10,9 @@ RSpec.feature "Showing cart items" do
     click_link "Catalogs"
     click_link book.title
     click_button "Add to Cart"
-    expect(current_path).to eq(cart_path(cart))
+    require 'pry';binding.pry
+    expect(current_path).to eq(catalog_path(book.id))
+    #expect(page).to have_button("Checkout")
   end
 
 end

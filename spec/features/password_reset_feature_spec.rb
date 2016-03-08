@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "Resetting Password" do
   
-  let(:user) { Fabricate(:user, email: "johnd@example.com") }
+  let!(:user) { Fabricate(:user, email: "johnd@example.com") }
   scenario "with valid email address" do
     visit root_path
     click_link "Login"

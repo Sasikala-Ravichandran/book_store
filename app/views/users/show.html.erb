@@ -1,5 +1,10 @@
-<h2><%= @user.full_name %></h2>
-<h6><%= @user.email %></h6>
-<% if current_user %>
-  <%= @user.addresses.map { |add| [add.city, add.zipcode] } %>
-<% end %>
+<section>
+  <div class='col-md-10 col-md-offset-1'>
+    <header>
+      <h3 class='titles'><%= "#{@user.full_name}" %>'s Profile</h3>
+    </header>
+    <p id="first-name">First name: <%= @user.first_name %></p>
+    <p id="last-name">Last name: <%= @user.last_name %></p>
+    <p id="email">Email: <%= @user.email %></p>
+  </div>
+</section>

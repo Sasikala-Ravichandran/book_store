@@ -39,6 +39,7 @@ class OrdersController < ApplicationController
   end
 
   private
+
   def transfer_the_cart_item
     @cart.cart_items.each do |item|
       @order.order_items << OrderItem.new(
