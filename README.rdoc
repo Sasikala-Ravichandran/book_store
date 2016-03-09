@@ -1,28 +1,33 @@
-== README
+== Book Store App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app built to learn test driven development by taking Udemy Course-'Ruby on Rails 4---A Test-Driven Approach '[https://www.udemy.com/ruby-on-rails-4-a-test-driven-approach/]
 
-Things you may want to cover:
+Gems Used for this app:
 
-* Ruby version
+* bootstrap_form
 
-* System dependencies
+* bootstrap-sass
 
-* Configuration
+* carrierwave-dropbox
 
-* Database creation
+* figaro
 
-* Database initialization
+* will_paginate-bootstrap
 
-* How to run the test suite
+* stripe
 
-* Services (job queues, cache servers, search engines, etc.)
+* rspec
 
-* Deployment instructions
+* guard-rspec
 
-* ...
+* fabrication
 
+* capybara
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* faker
+
+* shoulda-matchers
+
+* selenium-webdriver
+
+* database_cleaner
