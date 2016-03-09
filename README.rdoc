@@ -1,6 +1,6 @@
 == Book Store App
 
-This app built to learn test driven development by taking Udemy Course-'Ruby on Rails 4---A Test-Driven Approach'[https://www.udemy.com/ruby-on-rails-4-a-test-driven-approach/]
+This app built to learn test driven development by taking Udemy Course-'Ruby on Rails 4---A Test-Driven Approach' at[https://www.udemy.com/ruby-on-rails-4-a-test-driven-approach/]
 
 Gems Used for this app:
 
